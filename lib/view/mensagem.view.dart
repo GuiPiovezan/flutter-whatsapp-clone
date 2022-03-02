@@ -20,6 +20,7 @@ class MensagemView extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,
+        elevation: 0,
         fixedColor: Colors.green,
         unselectedIconTheme: IconThemeData(
           color: Colors.grey[500],
