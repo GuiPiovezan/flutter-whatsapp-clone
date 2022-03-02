@@ -6,7 +6,7 @@ class MensagemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Message"),
+        title: const Text("Message"),
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
