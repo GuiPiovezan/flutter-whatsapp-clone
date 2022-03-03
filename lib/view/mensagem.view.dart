@@ -16,6 +16,17 @@ class MensagemView extends StatelessWidget {
         children: <Widget>[
           CardMessage(),
           CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
+          CardMessage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
