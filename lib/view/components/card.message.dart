@@ -44,23 +44,27 @@ class CardMessage extends StatelessWidget {
               ],
             ),
           ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(model.dataUltimaMensagem.hour.toString()),
-              const SizedBox(
-                height: 4,
-              ),
-              CircleAvatar(
-                child: Text(
-                  model.quantidadeNaoLida.toString(),
-                  style: const TextStyle(color: Colors.white),
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(model.dataUltimaMensagem.hour.toString() +
+                    ":" +
+                    model.dataUltimaMensagem.minute.toString()),
+                const SizedBox(
+                  height: 4,
                 ),
-                radius: 11,
-                backgroundColor: const Color(0xFF1EBE71),
-              ),
-            ],
+                CircleAvatar(
+                  child: Text(
+                    model.quantidadeNaoLida.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  radius: 11,
+                  backgroundColor: const Color(0xFF1EBE71),
+                ),
+              ],
+            ),
           ),
         ],
       ),
