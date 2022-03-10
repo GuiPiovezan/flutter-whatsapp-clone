@@ -4,12 +4,13 @@ import 'package:whatsapp_clone/model/mensagem.model.dart';
 class CardMessage extends StatelessWidget {
   final MensagemModel model;
 
-  CardMessage(this.model);
+  // ignore: use_key_in_widget_constructors
+  const CardMessage(this.model);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(13, 7, 18, 7),
+      margin: const EdgeInsets.fromLTRB(13, 7, 18, 7),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,12 +30,12 @@ class CardMessage extends StatelessWidget {
               children: [
                 Text(
                   model.nome,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Text(
@@ -48,16 +49,16 @@ class CardMessage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(model.dataUltimaMensagem.hour.toString()),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               CircleAvatar(
                 child: Text(
                   model.quantidadeNaoLida.toString(),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 radius: 11,
-                backgroundColor: Color(0xFF1EBE71),
+                backgroundColor: const Color(0xFF1EBE71),
               ),
             ],
           ),
