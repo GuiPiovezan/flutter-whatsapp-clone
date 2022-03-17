@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/model/mensagem.model.dart';
 import 'package:whatsapp_clone/view/components/card.message.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 var mensagens = [
   MensagemModel("", "Fulado de ciclano", "Opa, bão?", DateTime.now(),
@@ -12,6 +13,8 @@ var mensagens = [
 ];
 
 class MensagemView extends StatelessWidget {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +25,24 @@ class MensagemView extends StatelessWidget {
         foregroundColor: Colors.black,
         elevation: 0,
       ),
-      body: ListView.separated(
-        separatorBuilder: (_, i) => const Divider(),
-        itemBuilder: (_, index) => CardMessage(mensagens[index]),
-        itemCount: mensagens.length,
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: firestore
+            .collection("mensagens")
+            .orderBy("dataUltimaMensagem")
+            .snapshots(),
+        builder: (_, snapshot) {
+          if (!snapshot.hasData) return const CircularProgressIndicator();
+
+          if (snapshot.hasError) return const Text("Erro ao consultar dados");
+
+          return ListView.separated(
+            separatorBuilder: (_, i) => const Divider(),
+            itemBuilder: (_, index) => CardMessage(
+              MensagemModel.fromMap(snapshot.data!.docs[index].data()),
+            ),
+            itemCount: snapshot.data!.docs.length,
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,

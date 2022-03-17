@@ -19,8 +19,7 @@ class CardMessage extends StatelessWidget {
             child: const CircleAvatar(
               backgroundColor: Colors.blue,
               radius: 27.5,
-              backgroundImage: NetworkImage(
-                  "https://media-exp1.licdn.com/dms/image/C4D03AQFGsHRvk927EA/profile-displayphoto-shrink_800_800/0/1638278956384?e=1651708800&v=beta&t=Q9fmxMzwmQ4aOCcvC1q_4r-GCSsfRck-VNTp8VqURhA"),
+              backgroundImage: NetworkImage(""),
             ),
           ),
           Expanded(
@@ -29,7 +28,7 @@ class CardMessage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  model.nome,
+                  model.nome!,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -39,7 +38,7 @@ class CardMessage extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  model.ultimaMensagem,
+                  model.ultimaMensagem!,
                 ),
               ],
             ),
@@ -49,9 +48,11 @@ class CardMessage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(model.dataUltimaMensagem.hour.toString() +
-                    ":" +
-                    model.dataUltimaMensagem.minute.toString()),
+                Text(
+                  model.dataUltimaMensagem!.hour.toString() +
+                      ":" +
+                      model.dataUltimaMensagem!.minute.toString(),
+                ),
                 const SizedBox(
                   height: 4,
                 ),
