@@ -26,10 +26,7 @@ class MensagemView extends StatelessWidget {
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: firestore
-            .collection("mensagens")
-            .orderBy("dataUltimaMensagem")
-            .snapshots(),
+        stream: firestore.collection("mensagens").snapshots(),
         builder: (_, snapshot) {
           if (!snapshot.hasData) return const CircularProgressIndicator();
 
