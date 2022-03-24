@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/model/mensagem.model.dart';
 import 'package:whatsapp_clone/view/components/card.message.dart';
@@ -14,6 +17,7 @@ var mensagens = [
 
 class MensagemView extends StatelessWidget {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,11 @@ class MensagemView extends StatelessWidget {
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: firestore.collection("mensagens").snapshots(),
+        stream: firestore
+            .collection("mensagens")
+            .where("usuarios", arrayContains: auth.currentUser!.uid)
+            .orderBy("dataUltimaMensagem", descending: true)
+            .snapshots(),
         builder: (_, snapshot) {
           if (!snapshot.hasData) return const CircularProgressIndicator();
 
@@ -40,6 +48,13 @@ class MensagemView extends StatelessWidget {
             itemCount: snapshot.data!.docs.length,
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          auth.signOut();
+          Navigator.of(context).pushReplacementNamed('/login');
+        },
+        child: Icon(Icons.logout),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,

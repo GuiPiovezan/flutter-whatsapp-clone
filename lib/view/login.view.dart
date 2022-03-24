@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +10,13 @@ class LoginView extends StatelessWidget {
   String email = "";
   String senha = "";
 
-  void save() async {
+  void save(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       var result =
           await auth.signInWithEmailAndPassword(email: email, password: senha);
+
+      Navigator.of(context).pushNamed('/mensagens');
     }
   }
 
@@ -43,7 +47,7 @@ class LoginView extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              onPressed: save,
+              onPressed: () => save(context),
               child: const Text("Entrar"),
             )
           ],
