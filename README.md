@@ -1,6 +1,6 @@
 # whatsapp_clone
 
-A new Flutter project.
+Um novo projeto Flutter, desenvolvidor em aulas para adquirir conhecimentos na tecnologia, como Firebase, a linguagem de programação e a própria tecnologia Flutter.
 
 ## Getting Started
 
